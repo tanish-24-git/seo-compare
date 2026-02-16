@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  fastapi-backend:
+    build:
+      context: .
+      dockerfile: app/docker/backend.Dockerfile
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+      - ./app/data:/app/data
+    env_file:
+      - .env
+    networks:
+      - seo-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: seo-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - fastapi-backend
+    networks:
+      - seo-network
+
+networks:
+  seo-network:
+    driver: bridge

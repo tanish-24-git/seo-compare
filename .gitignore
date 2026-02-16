@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+node_modules/
+dist/
+build/
+.venv/
+venv/
+env/
+.idea/
+.vscode/
