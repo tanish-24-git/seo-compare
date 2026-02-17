@@ -1,6 +1,6 @@
 {
     "url": "https://www.bajajlifeinsurance.com/",
-    "timestamp": "2026-02-15T16:46:09.995518",
+    "timestamp": "2026-02-16T08:40:19.962938",
     "domain_authority": {
         "domain_age": 15.0,
         "domain_authority": 65.0,
@@ -44,10 +44,10 @@
         "h1_presence": true,
         "multiple_h1_issues": false,
         "heading_hierarchy_valid": true,
-        "image_alt_coverage": 0.768167632634864
+        "image_alt_coverage": 0.767545820295038
     },
     "content": {
-        "avg_word_count": 14111,
+        "avg_word_count": 14104,
         "thin_content_ratio": 0.0,
         "duplicate_content_signals": 0.1,
         "readability_score": 0.75,
@@ -84,8 +84,8 @@
     "technical": {
         "lcp_score": 1.5,
         "cls_score": 0.05,
-        "page_load_time": 1.7561666666666667,
-        "ttfb": 328.8333333333333,
+        "page_load_time": 2.269,
+        "ttfb": 67.0,
         "js_bundle_weight": 800.0,
         "css_blocking": 3,
         "image_optimization": 0.8,
@@ -132,33 +132,5 @@
         "content_freshness": true
     },
     "overall_score": 100.0,
-    "ai_insights": {
-        "content_quality": {
-            "readability_score": 0.8,
-            "keyword_optimization": 0.7,
-            "depth_analysis": "The content has a moderate depth, covering the basics of life insurance and its various aspects, but lacks detailed analysis and technical explanations."
-        },
-        "eeat": {
-            "author_identified": false,
-            "expert_citations": false,
-            "transparency_score": 0.4
-        },
-        "ymyl": {
-            "trust_indicators": [
-                "Contact information available",
-                "Clear policy details",
-                "FAQ section available"
-            ],
-            "disclaimer_present": true,
-            "license_info": "Bajaj Life Insurance Limited, formerly known as Bajaj Allianz Life Insurance Company Ltd."
-        },
-        "india_specific": {
-            "localized_content": true,
-            "indian_legal_compliance": true
-        },
-        "brand_ux": {
-            "primary_cta_clarity": 0.9,
-            "professional_design_score": 0.8
-        }
-    }
+    "ai_insights": {}
 }

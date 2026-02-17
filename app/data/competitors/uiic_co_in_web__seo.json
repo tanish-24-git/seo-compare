@@ -1,6 +1,6 @@
 {
-    "url": "https://www.policybazaar.com/",
-    "timestamp": "2026-02-16T08:05:21.589476",
+    "url": "https://uiic.co.in/web/",
+    "timestamp": "2026-02-16T11:50:17.867272",
     "domain_authority": {
         "domain_age": 15.0,
         "domain_authority": 65.0,
@@ -8,7 +8,7 @@
         "referring_domains": 12000,
         "organic_keywords": 85000,
         "branded_keyword_presence": false,
-        "indexed_pages": 60,
+        "indexed_pages": 500,
         "domain_trust_signals": 0.85,
         "https_status": true,
         "ssl_validity": true
@@ -37,28 +37,28 @@
     },
     "meta_html": {
         "title_presence": true,
-        "title_length_optimized": false,
-        "duplicate_titles": 0,
+        "title_length_optimized": true,
+        "duplicate_titles": 3,
         "meta_desc_presence": true,
         "meta_desc_length": true,
         "h1_presence": true,
-        "multiple_h1_issues": false,
+        "multiple_h1_issues": true,
         "heading_hierarchy_valid": true,
-        "image_alt_coverage": 0.9336917562724014
+        "image_alt_coverage": 0.9954337899543378
     },
     "content": {
-        "avg_word_count": 12359,
+        "avg_word_count": 2089,
         "thin_content_ratio": 0.0,
         "duplicate_content_signals": 0.1,
         "readability_score": 0.75,
         "structured_content_usage": true,
-        "faq_presence": false,
+        "faq_presence": true,
         "blog_volume": 50,
         "update_frequency": "Weekly"
     },
     "intent": {
-        "informational_pages": 3,
-        "transactional_pages": 1,
+        "informational_pages": 30,
+        "transactional_pages": 15,
         "intent_alignment_score": 0.85,
         "topic_depth": 0.8,
         "featured_snippet_ready": true
@@ -66,10 +66,10 @@
     "ymyl": {
         "irdai_registration": true,
         "legal_details": true,
-        "claim_settlement_ratio": false,
+        "claim_settlement_ratio": true,
         "risk_disclaimer": true,
-        "privacy_policy_quality": false,
-        "terms_conditions": false,
+        "privacy_policy_quality": true,
+        "terms_conditions": true,
         "contact_grievance_info": true,
         "physical_address": false
     },
@@ -78,14 +78,14 @@
         "author_bio": false,
         "expertise_indicators": true,
         "about_us_depth": true,
-        "leadership_transparency": false,
+        "leadership_transparency": true,
         "awards_certifications": true
     },
     "technical": {
         "lcp_score": 1.5,
         "cls_score": 0.05,
-        "page_load_time": 2.0,
-        "ttfb": 608.0,
+        "page_load_time": 2.87924,
+        "ttfb": 1825.0,
         "js_bundle_weight": 800.0,
         "css_blocking": 3,
         "image_optimization": 0.8,
@@ -107,7 +107,7 @@
         "external_authority_links": 5
     },
     "schema_data": {
-        "organization_schema": true,
+        "organization_schema": false,
         "product_schema": true,
         "faq_schema": false,
         "breadcrumb_schema": false,
@@ -115,9 +115,9 @@
         "schema_validation_errors": 0
     },
     "india_specific": {
-        "inr_currency_use": true,
-        "india_tax_keywords": true,
-        "hreflang_en_in": true,
+        "inr_currency_use": false,
+        "india_tax_keywords": false,
+        "hreflang_en_in": false,
         "localized_content_relevance": 0.9
     },
     "health": {
@@ -129,36 +129,8 @@
     "brand_ux": {
         "structured_nav_clarity": true,
         "cta_optimization": true,
-        "content_freshness": false
+        "content_freshness": true
     },
     "overall_score": 90.0,
-    "ai_insights": {
-        "content_quality": {
-            "readability_score": 0.7,
-            "keyword_optimization": 0.8,
-            "depth_analysis": "The content provides a good depth of information about various insurance products, but lacks detailed analysis and expert opinions."
-        },
-        "eeat": {
-            "author_identified": false,
-            "expert_citations": false,
-            "transparency_score": 0.4
-        },
-        "ymyl": {
-            "trust_indicators": [
-                "SSL certificate",
-                "Google site verification",
-                "Contact information"
-            ],
-            "disclaimer_present": true,
-            "license_info": "IRDAI licensed insurance broker"
-        },
-        "india_specific": {
-            "localized_content": true,
-            "indian_legal_compliance": true
-        },
-        "brand_ux": {
-            "primary_cta_clarity": 0.9,
-            "professional_design_score": 0.8
-        }
-    }
+    "ai_insights": {}
 }

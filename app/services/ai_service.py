@@ -1,5 +1,6 @@
 import json
 from groq import AsyncGroq
+from langsmith import traceable
 
 from core.config import settings
 from typing import Dict, Any, List
@@ -10,6 +11,7 @@ class AIService:
         self.model = "llama-3.3-70b-versatile"
 
 
+    @traceable(name="analyze_seo_content", run_type="llm", metadata={"model": "llama-3.3-70b-versatile"})
     async def analyze_seo_content(self, html_content: str, url: str) -> Dict[str, Any]:
         """
         Extracts SEO signals from HTML content using Groq AI.
@@ -79,6 +81,7 @@ class AIService:
             print(f"Error calling Groq API for extraction: {e}")
             return {}
 
+    @traceable(name="compare_seo_data", run_type="llm", metadata={"model": "llama-3.3-70b-versatile", "task": "comparison"})
     async def compare_seo_data(self, baseline_data: Dict[str, Any], competitor_data: Dict[str, Any]) -> str:
         """
         Generates a comparative analysis summary between baseline and competitor using AI.

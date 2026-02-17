@@ -1,5 +1,6 @@
 import asyncio
 from typing import List, Set, Dict
+from collections import deque
 from playwright.async_api import async_playwright
 from core.config import settings
 from urllib.parse import urlparse, urljoin
@@ -8,10 +9,24 @@ class CrawlerService:
     def __init__(self, max_depth: int = settings.MAX_CRAWL_DEPTH):
         self.max_depth = max_depth
         self.visited: Set[str] = set()
-        self.to_visit: List[Dict] = []
+        self.to_visit: deque = deque()  # Using deque for O(1) pop operations (DFS stack)
         self.results: List[Dict] = []
 
     async def crawl(self, start_url: str) -> List[Dict]:
+        """
+        Crawls the website and returns the full list of results.
+        Wrapper around crawl_stream for backward compatibility.
+        """
+        results = []
+        async for page_data in self.crawl_stream(start_url):
+            results.append(page_data)
+        return results
+
+    async def crawl_stream(self, start_url: str):
+        """
+        Async generator that yields pages as they are crawled.
+        Allows for real-time processing/streaming of results.
+        """
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context(user_agent=settings.USER_AGENT)
@@ -19,9 +34,15 @@ class CrawlerService:
             domain = urlparse(start_url).netloc
             self.to_visit.append({"url": start_url, "depth": 0})
             
-            limit = 6 # Faster limit for on-the-fly audits
-            while self.to_visit and len(self.results) < limit:
-                current = self.to_visit.pop(0)
+            # Limit pages to prevent timeouts
+            max_pages = settings.MAX_PAGES
+            
+            while self.to_visit:
+                # Check limit inside loop to respect it strictly
+                if len(self.results) >= max_pages:
+                    break
+                    
+                current = self.to_visit.pop()  # DFS: pop from end (LIFO stack)
                 url = current["url"]
                 depth = current["depth"]
                 
@@ -38,9 +59,10 @@ class CrawlerService:
                 
                 try:
                     # Navigate with shorter timeout
-                    response = await page.goto(url, wait_until="domcontentloaded", timeout=15000)
+                    response = await page.goto(url, wait_until="domcontentloaded", timeout=20000) # Increased timeout slightly
 
                     if not response:
+                        await page.close()
                         continue
                         
                     content = await page.content()
@@ -52,7 +74,7 @@ class CrawlerService:
                         return { ttfb, load_time, lcp: 0, cls: 0 };
                     }""")
                     
-                    self.results.append({
+                    page_data = {
                         "url": url,
                         "content": content,
                         "status": response.status,
@@ -60,10 +82,14 @@ class CrawlerService:
                         "metrics": {
                             "ttfb": float(metrics.get("ttfb") or 300),
                             "load_time": float(metrics.get("load_time") or 2000)
-                        }
-                    })
+                        },
+                        "depth": depth
+                    }
                     
-                    if depth < self.max_depth and len(self.results) < limit:
+                    self.results.append(page_data)
+                    yield page_data # Stream the result immediately
+                    
+                    if depth < self.max_depth:
                         links = await page.query_selector_all("a")
                         for link in links:
                             href = await link.get_attribute("href")
@@ -76,8 +102,8 @@ class CrawlerService:
                                     
                 except Exception as e:
                     print(f"Error crawling {url}: {e}")
+                    # Yield error event if needed, or just skip
                 finally:
                     await page.close()
                     
             await browser.close()
-            return self.results

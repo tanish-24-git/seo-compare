@@ -29,11 +29,18 @@ class Settings(BaseSettings):
 
     
     # Crawler
-    MAX_CRAWL_DEPTH: int = 3
+    MAX_CRAWL_DEPTH: int = 10
+    MAX_PAGES: int = 1000  # Increased limit for full site crawl
     USER_AGENT: str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
     
     # AI Analysis
     GROQ_API_KEY: Optional[str] = None
+    
+    # LangSmith Tracing
+    LANGCHAIN_TRACING_V2: bool = False
+    LANGCHAIN_API_KEY: Optional[str] = None
+    LANGCHAIN_PROJECT: str = "seo-compare-engine"
+    
     DEBUG: bool = False
 
     model_config = ConfigDict(extra="ignore", env_file=".env")
